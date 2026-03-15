@@ -1,0 +1,289 @@
+/* =========================================================
+   1. GENERAL CONFIGURATION
+   ========================================================= */
+:root {
+  /* Main color palette (Deep Ocean Theme) */
+  --primary-dark: #002b5b; /* Deep blue ocean */
+  --primary-light: #2b4c7e; /* Lighter blue */
+  --accent-color: #0d6efd; /* Accent color (Bootstrap Blue) */
+  --bg-light: #f0f2f5; /* Light blue-grey background for content */
+  --text-dark: #2c3e50;
+  --text-muted: #6c757d;
+}
+
+body {
+  font-family: "Segoe UI", "Roboto", "Helvetica Neue", sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Beautify Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* =========================================================
+   2. LOGIN & REGISTER PAGES (AUTH PAGES)
+   ========================================================= */
+/* Dark blue gradient background transition */
+.auth-body {
+  background: linear-gradient(135deg, #000428 0%, #004e92 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+}
+
+.auth-card {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); /* Deeper shadow */
+  background: rgba(255, 255, 255, 0.95); /* Slightly transparent */
+  backdrop-filter: blur(10px);
+}
+
+.auth-card img {
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+/* =========================================================
+   3. NAVIGATION BAR (NAVBAR)
+   ========================================================= */
+.navbar-custom {
+  /* Dark blue gradient for Menu */
+  background: linear-gradient(to right, #7ec9fc, #004e92);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-size: 1.25rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   4. CARDS & GENERAL INTERFACE
+   ========================================================= */
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.04);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  background-color: #ffffff;
+}
+
+/* Slight lift effect when hovering over posts */
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Specific card for Input Form (Create Idea) */
+.form-card {
+  border-top: 5px solid var(--primary-light); /* Blue highlight on top */
+}
+
+/* =========================================================
+   5. USER AVATAR
+   ========================================================= */
+/* Round avatar containing letter (Placeholder) */
+.user-avatar-placeholder {
+  width: 38px;
+  height: 38px;
+  background: linear-gradient(45deg, #0d6efd, #0dcaf0);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 16px;
+  border: 2px solid white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Avatar is a real image */
+.user-avatar-img {
+  width: 38px;
+  height: 38px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================================================
+   6. ATTACHMENTS
+   ========================================================= */
+.attachment-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  transition: all 0.2s ease;
+}
+
+.attachment-img:hover {
+  transform: scale(1.08);
+  border-color: var(--primary-light);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================================================
+   7. PROFILE PAGE
+   ========================================================= */
+.profile-header {
+  height: 220px;
+  border-radius: 12px 12px 0 0;
+  position: relative;
+  background-color: #ddd;
+}
+
+/* Large Avatar circle on Profile page */
+.avatar-circle {
+  width: 140px;
+  height: 140px;
+  background-color: #fff;
+  border: 4px solid #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: var(--primary-light);
+  position: absolute;
+  bottom: -70px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  z-index: 2;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Change cover button */
+.change-cover-btn {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(4px);
+  transition: 0.3s;
+  font-weight: 500;
+}
+
+.change-cover-btn:hover {
+  background-color: rgba(0, 0, 0, 0.85);
+  color: white;
+}
+
+/* Change avatar button */
+.upload-avatar-btn {
+  position: absolute;
+  bottom: -105px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  width: 150px;
+  text-align: center;
+}
+
+.info-label {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+
+.info-value {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--primary-dark);
+}
+
+.bio-section {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  border-left: 4px solid var(--primary-light);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.02);
+}
+
+/* =========================================================
+   8. BANNERS (CREATE IDEA)
+   ========================================================= */
+.banner-campaign {
+  /* Green - Teal Gradient (For active campaigns) */
+  background: linear-gradient(135deg, #11998e, #38ef7d);
+  color: white;
+  border-radius: 12px;
+  border: none;
+}
+
+.banner-free {
+  /* Purple - Blue Gradient (For free ideas) */
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border-radius: 12px;
+  border: none;
+}
+
+.deadline-banner {
+  /* Orange - Pink Gradient (For homepage notifications) */
+  background: linear-gradient(135deg, #ff512f, #dd2476);
+  color: white;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+/* =========================================================
+   9. ADMIN DASHBOARD TWEAKS
+   ========================================================= */
+.nav-tabs .nav-link.active {
+  color: var(--primary-dark);
+  font-weight: bold;
+  border-top: 3px solid var(--primary-dark);
+}
+
+.nav-tabs .nav-link {
+  color: var(--text-muted);
+}
+
+/* =========================================================
+   10. SPECIFIC NAVBAR FOR PROFILE PAGE
+   ========================================================= */
+.navbar-profile {
+  /* Gradient from Light Blue to Dark Blue */
+  background: linear-gradient(to right, #7ec9fc, #004e92);
+  box-shadow: 0 4px 10px rgba(0, 78, 146, 0.3); /* Blue shadow for matching tone */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}

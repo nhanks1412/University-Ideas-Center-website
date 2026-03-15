@@ -1,0 +1,7 @@
+# Ignore the folder containing the user-uploaded file
+uploads/documents/*
+!uploads/documents/.keep
+
+# Ignore system junk files
+.DS_Store
+Thumbs.db
