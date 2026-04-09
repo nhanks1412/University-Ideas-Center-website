@@ -8,9 +8,37 @@ $user_id = $_SESSION['user_id'];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
-    $title = trim($_POST['title']);
-    $content = trim($_POST['content']);
-    $category_id = $_POST['category_id'];
+    // 1. CHẶN LỖI SẬP SERVER: Kiểm tra xem POST có bị rỗng do file vượt quá post_max_size không
+    if (empty($_POST) && $_SERVER['CONTENT_LENGTH'] > 0) {
+        echo "<script>alert('❌ Lỗi: Tổng dung lượng file tải lên vượt quá giới hạn của máy chủ!'); window.history.back();</script>";
+        exit();
+    }
+
+    // 2. KIỂM TRA DUNG LƯỢNG 5MB TRƯỚC KHI LƯU VÀO DATABASE
+    if (isset($_FILES['documents']) && !empty($_FILES['documents']['name'][0])) {
+        $total_files = count($_FILES['documents']['name']);
+        for ($i = 0; $i < $total_files; $i++) {
+            $file_size = $_FILES['documents']['size'][$i];
+            $file_error = $_FILES['documents']['error'][$i];
+            
+            // Nếu file > 5MB hoặc gặp lỗi dung lượng từ server
+            if ($file_size > 5 * 1024 * 1024 || $file_error == UPLOAD_ERR_INI_SIZE) {
+                echo "<script>alert('❌ Lỗi: Mỗi file đính kèm không được vượt quá 5MB. Vui lòng kiểm tra lại!'); window.history.back();</script>";
+                exit();
+            }
+        }
+    }
+
+    // Bắt đầu lấy dữ liệu an toàn
+    $title = trim($_POST['title'] ?? '');
+    $content = trim($_POST['content'] ?? '');
+    $category_id = $_POST['category_id'] ?? null;
+    
+    // Kiểm tra xem các trường bắt buộc có bị thiếu không
+    if (!$category_id) {
+        echo "<script>alert('❌ Lỗi: Thiếu thông tin Category!'); window.history.back();</script>";
+        exit();
+    }
     
     // 🔥 IMPORTANT PROCESSING: IF EMPTY, SET TO NULL
     $academic_year_id = !empty($_POST['academic_year_id']) ? $_POST['academic_year_id'] : null;
@@ -34,19 +62,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         $idea_id = $conn->lastInsertId();
 
-        // Handle File Upload
+        // Handle File Upload (Lúc này chắc chắn file đã hợp lệ)
         if (isset($_FILES['documents']) && !empty($_FILES['documents']['name'][0])) {
-            $total_files = count($_FILES['documents']['name']);
             $target_dir = "uploads/documents/";
             if (!file_exists($target_dir)) { mkdir($target_dir, 0777, true); }
 
+            $total_files = count($_FILES['documents']['name']);
             for ($i = 0; $i < $total_files; $i++) {
                 $file_name = $_FILES['documents']['name'][$i];
                 $file_tmp = $_FILES['documents']['tmp_name'][$i];
-                $file_size = $_FILES['documents']['size'][$i];
                 
-                if ($file_size > 5 * 1024 * 1024) continue;
-
                 $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
                 $allowed = ['jpg', 'jpeg', 'png', 'pdf', 'doc', 'docx'];
                 
