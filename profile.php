@@ -51,6 +51,6 @@ try {
     die("System Error: " . $e->getMessage());
 }
 
-// 4. CALL THE VIEW
+// 4. Call The View
 require 'views/profile.php';
 ?>
