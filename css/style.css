@@ -282,8 +282,8 @@ a {
    10. SPECIFIC NAVBAR FOR PROFILE PAGE
    ========================================================= */
 .navbar-profile {
-  /* Gradient from Light Blue to Dark Blue */
-  background: linear-gradient(to right, #7ec9fc, #004e92);
+  /* Gradient from Light Blue to Dark Blue *//
+  background:linear-gradient(to right, #7ec9fc, #004e92);
   box-shadow: 0 4px 10px rgba(0, 78, 146, 0.3);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
