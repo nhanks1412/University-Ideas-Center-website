@@ -38,7 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             // =========================================================
             // SEND EMAIL NOTIFICATION TO ADMIN ON NEW SELF-REGISTRATION
-            // =========================================================
             require_once 'mail_helper.php';
             
             // Fetch Role Name and Department Name for a better email template
