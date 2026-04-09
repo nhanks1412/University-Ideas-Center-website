@@ -88,7 +88,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit();
 }
 
+// --- PART 2: FETCH DATA & RENDER VIEW ---
+if (isset($_SESSION['user_id'])) { header("Location: index.php"); exit(); }
 
+try {
+    // 1. Fetch Department list
+    $departments = $conn->query("SELECT * FROM Departments ORDER BY name ASC")->fetchAll(PDO::FETCH_ASSOC);
+    
+    // 2. Fetch Roles list (SECURITY: HIDE ADMIN - role_id = 1)
+    $roles = $conn->query("SELECT * FROM Roles WHERE role_id != 1 ORDER BY name ASC")->fetchAll(PDO::FETCH_ASSOC);
+} catch (Exception $e) {
+    $departments = [];
+    $roles = [];
+}
 
 require 'views/register.php';
 ?>
