@@ -48,6 +48,5 @@ if (isset($_SESSION['user_id'])) {
     exit();
 }
 
-// Call the view
 require 'views/login.php';
 ?>
