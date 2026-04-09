@@ -42,7 +42,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // --- PART 2: HANDLE UI DISPLAY (HTML) ---
 // If GET request (Normal access)
 
-
+// If already logged in, redirect to home page
+if (isset($_SESSION['user_id'])) {
+    header("Location: index.php");
+    exit();
+}
 
 // Call the view
 require 'views/login.php';
